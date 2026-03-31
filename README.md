@@ -51,3 +51,12 @@ Fixing the above is left as workshop work.
 ## Security note
 
 This app is for teaching. JWT secrets, cookie flags, and threat model are **development-oriented**, not a blueprint for production auth.
+
+
+## Helpful links:
+1. https://cursor.com/learn
+1. https://cursor.com/docs
+1. https://blog.serghei.pl/posts/agent-skills-101/
+1. https://github.com/PatrickJS/awesome-cursorrules
+1. https://github.com/VoltAgent/awesome-claude-code-subagents
+1. https://github.com/ComposioHQ/awesome-claude-skills
