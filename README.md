@@ -48,6 +48,17 @@ These are **deliberately** missing or rough:
 
 Fixing the above is left as workshop work.
 
+## Workshop 1 (facilitators)
+
+Compare **bad vs good** Cursor use on the same code change:
+
+| Team | In-repo setup | Prompt style |
+|------|----------------|-------------|
+| **A** | Empty `.cursor/rules` (or checkout without rules); optional: disable user rules | Vague one-liner only |
+| **B** | Root **`AGENTS.md`** + **`.cursor/rules/workshop-task-validation.mdc`** | Clear task + context |
+
+**Exercise:** add **`POST /api/tasks`** validation in `app/api/tasks/route.ts` (title, cuid `projectId`, `400` JSON errors)—details in `AGENTS.md` and the `.mdc` rule. Session 1: no Skills or subagents in this repo.
+
 ## Security note
 
 This app is for teaching. JWT secrets, cookie flags, and threat model are **development-oriented**, not a blueprint for production auth.

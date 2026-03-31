@@ -1,3 +1,4 @@
+# Workshop: do not ignore AGENTS.md or .cursor/rules — participants need them in context.
 node_modules/
 .next/
 **/node_modules/**
@@ -5,3 +6,4 @@ node_modules/.prisma/
 .env
 .env.local
 .env.*.local
+
