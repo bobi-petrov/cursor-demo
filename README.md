@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TeamFlow
 
-## Getting Started
+Small task-management demo for workshops: **projects**, **tasks**, JWT **authentication** (httpOnly cookie), and a **dashboard** with per-project task counts.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 14** (App Router)
+- **TypeScript** (strict mode)
+- **Tailwind CSS**
+- **Prisma** with **SQLite**
+- **JWT** auth (HS256 via `jose`, **not** production-hardened)
+- **Jest** (limited tests on purpose)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Auth** — register, login, logout; JWT stored in an httpOnly cookie (`teamflow_token`).
+2. **Projects** — create, list, delete (scoped to the signed-in user).
+3. **Tasks** — create (assigned to a project), mark complete, delete.
+4. **Dashboard** — lists projects, task counts, and inline task actions.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup
 
-## Learn More
+1. `npm install`
+2. Copy `.env.example` to `.env` and set `JWT_SECRET` (at least 16 characters for the app checks).
+3. `npx prisma migrate dev` (or `npm run db:migrate`) to apply migrations and create the SQLite DB.
+4. `npm run dev` — open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command            | Purpose              |
+| ------------------ | -------------------- |
+| `npm run dev`      | Development server   |
+| `npm run build`    | Production build     |
+| `npm run start`    | Start production     |
+| `npm run lint`     | ESLint               |
+| `npm test`         | Jest                 |
+| `npm run db:migrate` | Prisma migrate dev |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Intentional gaps (for participants)
 
-## Deploy on Vercel
+These are **deliberately** missing or rough:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **No input validation** on API routes (no Zod/manual checks).
+- **No React error boundaries** on the frontend.
+- **No loading states** on async UI (forms, dashboard fetches).
+- **Tests** only cover **`lib/auth/jwt.ts`** helpers — no API, component, or DB tests.
+- **Dashboard performance**: loads **projects** and **tasks** in **two sequential client fetches** instead of one optimized server query or aggregated endpoint.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Fixing the above is left as workshop work.
+
+## Security note
+
+This app is for teaching. JWT secrets, cookie flags, and threat model are **development-oriented**, not a blueprint for production auth.
