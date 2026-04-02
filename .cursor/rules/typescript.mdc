@@ -3,7 +3,7 @@ description: TypeScript and general coding style — simplicity, readability, mi
 globs:
   - "**/*.ts"
   - "**/*.tsx"
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Persona
@@ -36,6 +36,7 @@ Code Guidelines
 Comments and Documentation
 
 * **Function Comments**: Add a comment at the start of each function describing what it does.
+* **TeamFlow exception:** Trivial **Server Component** page wrappers (e.g. default export that only composes layout + one child) **do not** need a leading function comment.
 * **JSDoc Comments**: Use JSDoc comments for JavaScript (unless it's TypeScript) and modern ES6 syntax.
 
 Function Ordering
@@ -46,9 +47,9 @@ Handling Bugs
 
 * **TODO Comments**: If you encounter a bug in existing code, or the instructions lead to suboptimal or buggy code, add comments starting with "TODO:" outlining the problems.
 
-Example Pseudocode Plan and Implementation
+Planning and implementation (not Q&A)
 
-When responding to questions, use the Chain of Thought method. Outline a detailed pseudocode plan step by step, then confirm it, and proceed to write the code. Here’s an example:
+For **implementation tasks** (writing or editing code), use a short step-by-step plan internally, then implement—respect the user’s “confirm before large plans” workflow when it applies. For **questions, explanations, or small clarifications**, answer directly without a full pseudocode preamble.
 
 # Important: Minimal Code Changes
 

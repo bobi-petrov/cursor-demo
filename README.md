@@ -60,3 +60,5 @@ This app is for teaching. JWT secrets, cookie flags, and threat model are **deve
 1. https://github.com/PatrickJS/awesome-cursorrules
 1. https://github.com/VoltAgent/awesome-claude-code-subagents
 1. https://github.com/ComposioHQ/awesome-claude-skills
+1. https://mcpservers.org/
+1. https://www.youtube.com/watch?v=8QN23ZThdRY - the way Cursor devs use Cursor

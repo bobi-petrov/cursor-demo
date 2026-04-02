@@ -28,6 +28,15 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 Thinking "skip TDD just this once"? Stop. That's rationalization.
 
+## TeamFlow workshop carve-out
+
+In the **TeamFlow** workshop app (see `.cursor/rules/agents.mdc`):
+
+- **Strict red-green-refactor** applies most to **pure `lib/` functions** (e.g. due-date buckets, aggregation helpers) where Jest is cheap and high-signal.
+- **Next.js Route Handlers, Server Components, and client components** may use **test-after** or **manual / browser verification** unless the task or reviewer explicitly demands tests—Jest is **not** required everywhere in this repo.
+
+Outside TeamFlow, the Iron Law below still applies unless your human partner agrees otherwise.
+
 ## The Iron Law
 
 ```
@@ -356,7 +365,7 @@ Never fix bugs without a test.
 
 ## Testing Anti-Patterns
 
-When adding mocks or test utilities, read @testing-anti-patterns.md to avoid common pitfalls:
+When adding mocks or test utilities, read [references/testing-anti-patterns.md](references/testing-anti-patterns.md) in this skill folder to avoid common pitfalls:
 - Testing mock behavior instead of real behavior
 - Adding test-only methods to production classes
 - Mocking without understanding dependencies

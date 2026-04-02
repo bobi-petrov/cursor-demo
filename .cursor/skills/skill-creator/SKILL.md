@@ -8,6 +8,10 @@ license: Complete terms in LICENSE.txt
 
 This skill provides guidance for creating effective skills.
 
+## This repo (`cursor-demo`)
+
+The optional `scripts/init_skill.py` and `scripts/package_skill.py` flows below come from **upstream skill-tooling examples**; they are **not** vendored in this repository. For skills under `.cursor/skills/` here: create a folder (copy an existing skill such as `browser-use/` as a template), add `SKILL.md` with YAML frontmatter (`name`, `description`), then add `references/`, `scripts/`, or `assets/` only if needed. Use zip or git for sharing; only run `init_skill.py` / `package_skill.py` if you have those scripts installed elsewhere.
+
 ## About Skills
 
 Skills are modular, self-contained packages that extend Claude's capabilities by providing
@@ -133,24 +137,11 @@ To establish the skill's contents, analyze each concrete example to create a lis
 
 At this point, it is time to actually create the skill.
 
-Skip this step only if the skill being developed already exists, and iteration or packaging is needed. In this case, continue to the next step.
+Skip this step only if the skill being developed already exists; then continue to Step 4.
 
-When creating a new skill from scratch, always run the `init_skill.py` script. The script conveniently generates a new template skill directory that automatically includes everything a skill requires, making the skill creation process much more efficient and reliable.
+**In this repo:** Create `.cursor/skills/<skill-name>/`, add `SKILL.md` (frontmatter + body), and optional `references/`, `scripts/`, `assets/`. Copy structure from an existing skill if helpful.
 
-Usage:
-
-```bash
-scripts/init_skill.py <skill-name> --path <output-directory>
-```
-
-The script:
-
-- Creates the skill directory at the specified path
-- Generates a SKILL.md template with proper frontmatter and TODO placeholders
-- Creates example resource directories: `scripts/`, `references/`, and `assets/`
-- Adds example files in each directory that can be customized or deleted
-
-After initialization, customize or remove the generated SKILL.md and example files as needed.
+**Optional (external tooling):** Some distributions ship `init_skill.py` to scaffold a folder with template `SKILL.md` and example resource dirs—use only if that script is available on the machine.
 
 ### Step 4: Edit the Skill
 
@@ -160,7 +151,7 @@ When editing the (newly-generated or existing) skill, remember that the skill is
 
 To begin implementation, start with the reusable resources identified above: `scripts/`, `references/`, and `assets/` files. Note that this step may require user input. For example, when implementing a `brand-guidelines` skill, the user may need to provide brand assets or templates to store in `assets/`, or documentation to store in `references/`.
 
-Also, delete any example files and directories not needed for the skill. The initialization script creates example files in `scripts/`, `references/`, and `assets/` to demonstrate structure, but most skills won't need all of them.
+Also, delete any example files and directories not needed for the skill. If a scaffold added placeholder files under `scripts/`, `references/`, or `assets/`, remove unused ones.
 
 #### Update SKILL.md
 
@@ -174,29 +165,9 @@ To complete SKILL.md, answer the following questions:
 
 ### Step 5: Packaging a Skill
 
-Once the skill is ready, it should be packaged into a distributable zip file that gets shared with the user. The packaging process automatically validates the skill first to ensure it meets all requirements:
+**In this repo:** Validate manually: YAML frontmatter (`name`, `description`), sensible folder layout, and working links to bundled files. Distribute by zipping the skill folder or committing it to git.
 
-```bash
-scripts/package_skill.py <path/to/skill-folder>
-```
-
-Optional output directory specification:
-
-```bash
-scripts/package_skill.py <path/to/skill-folder> ./dist
-```
-
-The packaging script will:
-
-1. **Validate** the skill automatically, checking:
-   - YAML frontmatter format and required fields
-   - Skill naming conventions and directory structure
-   - Description completeness and quality
-   - File organization and resource references
-
-2. **Package** the skill if validation passes, creating a zip file named after the skill (e.g., `my-skill.zip`) that includes all files and maintains the proper directory structure for distribution.
-
-If validation fails, the script will report the errors and exit without creating a package. Fix any validation errors and run the packaging command again.
+**Optional (external tooling):** Some distributions provide `package_skill.py` to validate and zip a skill—use only if installed; it is not part of this repository.
 
 ### Step 6: Iterate
 

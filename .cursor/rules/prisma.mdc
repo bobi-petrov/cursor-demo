@@ -1,0 +1,14 @@
+---
+description: TeamFlow Prisma — queries, indexes, migrations, date fields.
+globs:
+  - "**/prisma/**"
+  - "**/lib/**/*.ts"
+---
+
+# TeamFlow — Prisma
+
+- **User scope:** Tasks and projects belong to a user via `Project.userId`. Every query that returns tasks must **scope through the signed-in user’s projects** (avoid IDOR).
+- **Nullable `dueDate`:** Decide how tasks **without** a due date appear (e.g. separate “unscheduled” bucket or omitted from date sections) and keep it consistent in UI and queries.
+- **Indexes:** Add `@@index` on columns you **filter or sort** by often (e.g. `dueDate`, `projectId`) when the schema task adds or uses those fields.
+- **Query shape:** Prefer **one or few** Prisma calls with `where` / `include` / `select` over N+1 loops; document tradeoffs if you split queries.
+- **Migrations:** Add a **new** migration for schema changes; **never** edit existing migration SQL files.

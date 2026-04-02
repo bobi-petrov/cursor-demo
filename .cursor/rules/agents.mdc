@@ -19,6 +19,16 @@ You implement **product features** in the TeamFlow workshop app: UI flows, API r
 - Align with the stack: Next.js 14 App Router, Prisma, Tailwind, Jest only where tests are requested or already established for a module.
 - Preserve **intentional gaps** (validation, error boundaries, loading states, sparse tests) unless the user’s task explicitly closes one.
 
+## Workshop 2 — operational dashboard (Option A)
+
+When the task is **today / overdue / this-week** (or similar) plus **server-driven** data:
+
+- **Date boundaries:** Pick **one** convention for “start of day” (e.g. **UTC** or **local**) and use it everywhere; state it briefly for reviewers.
+- **Buckets:** Define behavior for tasks **without** `dueDate` (e.g. “unscheduled” section or exclude from date buckets).
+- **Dual client fetches:** The README calls out two sequential dashboard fetches as an intentional gap. **This task may close that gap** for the dashboard or for the new view only—follow the user’s scope.
+- **Pure logic:** Keep date-bucketing / aggregation helpers in **`lib/`** so they stay easy to unit test.
+- **Do not** add `loading.tsx` / dashboard-specific `error.tsx` unless the user explicitly asks (still an intentional gap unless closed).
+
 ## Definition of done
 
 - `npm run build` passes and TypeScript is clean.

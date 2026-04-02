@@ -6,6 +6,8 @@ allowed-tools: Bash(browser-use:*)
 
 # Browser Automation with browser-use CLI
 
+**Cursor IDE browser MCP:** If your environment has the **Cursor browser / IDE browser** MCP enabled, use that workflow for navigation, snapshots, and clicks when verifying TeamFlow in dev—its lock/snapshot steps take precedence for those sessions. Use **`browser-use` CLI** below when you need this skill’s daemon and commands (or when MCP is unavailable).
+
 The `browser-use` command provides fast, persistent browser automation. A background daemon keeps the browser open across commands, giving ~50ms latency per call.
 
 ## Prerequisites
